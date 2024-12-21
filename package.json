@@ -1,0 +1,26 @@
+{
+  "name": "ssdoct2024_assignment_laurentmisso",
+  "version": "1.0.0",
+  "description": "Assignment Work for Server Side Development",
+  "main": "goflights.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/missomisso/SSDOct2024_Assignment_LaurentMisso.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/missomisso/SSDOct2024_Assignment_LaurentMisso/issues"
+  },
+  "homepage": "https://github.com/missomisso/SSDOct2024_Assignment_LaurentMisso#readme",
+  "devDependencies": {
+    "dotenv": "^16.4.7"
+  },
+  "dependencies": {
+    "@duffel/api": "^4.0.0"
+  }
+}
