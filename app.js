@@ -1,6 +1,7 @@
-import { Duffel } from '@duffel/api'
+const express = require("express");
+const bodyParser = require("body-parser");
+require("dotenv").config();
 
-const duffel = new Duffel({
-  token: process.env.DUFFEL_API,
-})
+const app = express();
 
+const port = 5000;
