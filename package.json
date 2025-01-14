@@ -18,11 +18,14 @@
   },
   "homepage": "https://github.com/missomisso/SSDOct2024_Assignment_LaurentMisso#readme",
   "devDependencies": {
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "nodemon": "^3.1.9"
   },
   "dependencies": {
     "@duffel/api": "^4.1.0",
     "body-parser": "^1.20.3",
-    "express": "^4.21.2"
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0"
   }
 }
