@@ -2,6 +2,10 @@
 
 Assignment Work for Server Side Development
 
+Attempting to build a project the connects airline's bicycle policy to you. Find a right airline that can fit your bicycle.
+
+Will add on a flight search engine too! So you can find your flight that you want :)
+
 project-folder/
 │
 ├── controllers/
