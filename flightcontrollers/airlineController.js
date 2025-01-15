@@ -1,4 +1,4 @@
-const Airline = require("../models/airlineModel");
+const Airline = require("../flightmodels/airlineModel");
 
 const getAllAirlines = async (req, res, next) => {
   try {

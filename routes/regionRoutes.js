@@ -2,7 +2,7 @@ const express = require("express");
 const {
   getAllRegions,
   createRegion,
-} = require("../controllers/regionController");
+} = require("../flightcontrollers/regionController");
 
 const router = express.Router();
 

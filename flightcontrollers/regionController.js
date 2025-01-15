@@ -1,4 +1,4 @@
-const Region = require("../models/regionModel");
+const Region = require("../flightmodels/regionModel");
 
 const getAllRegions = async (req, res, next) => {
   try {
