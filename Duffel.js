@@ -1,40 +1,47 @@
-require("dotenv").config();
+require("dotenv").config(); // Load environment variables
 const express = require("express"); // Import Express
-const app = express();
-const PORT = process.env.PORT || 3000;
-const { Duffel } = require("@duffel/api");
-const bodyParser = require("body-parser");
-const airlineRoutes = require("./routes/airlineRoutes");
-const regionRoutes = require("./routes/regionRoutes");
-const { errorHandler } = require("./middlewares/errorMiddleware");
+const bodyParser = require("body-parser"); // Body parsing middleware
+const { Duffel } = require("@duffel/api"); // Duffel API library
+const { errorHandler } = require("./middlewares/errorMiddleware"); // Custom error handler
+const airlineRoutes = require("./routes/airlineRoutes"); // Airline routes
+const regionRoutes = require("./routes/regionRoutes"); // Region routes
+const flightRoutes = require("./routes/flightRoutes");
 
-app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+const app = express(); // Initialize Express app
+const PORT = process.env.PORT || 3000; // Use environment variable or default to 3000
 
-app.use("/api/airlines", airlineRoutes);
-app.use("/api/regions", regionRoutes);
+// Initialize Duffel API with token from environment variables
+const duffel = new Duffel({
+  token: process.env.DUFFEL_ACCESS_TOKEN,
+});
 
+// Middleware
+app.use(bodyParser.json()); // Parse JSON request bodies
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+app.use(express.static("public")); // Serve static files from 'public' directory
+
+// Routes
+app.use("/api/airlines", airlineRoutes); // Airline routes
+app.use("/api/regions", regionRoutes); // Region routes
+app.use("/api/flights", flightRoutes);
+
+// Error handling middleware
 app.use(errorHandler);
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Duffel API is running on http://localhost:${PORT}`);
 });
 
-// Access the token from the environment variables
-const duffel = new Duffel({
-  token: process.env.DUFFEL_ACCESS_TOKEN, // Use the environment variable
-});
-
-async function fetchAirlines() {
+// Optional: Test Duffel API on server start
+async function fetchDuffelAirlines() {
   try {
     const airlines = await duffel.airlines.list();
-    console.log("Airlines:", airlines);
+    console.log("Duffel Airlines:", airlines.data); // Log the fetched airlines
   } catch (error) {
-    console.error("Error fetching airlines:", error);
+    console.error("Duffel API error:", error.response?.data || error.message);
   }
 }
 
-fetchAirlines();
-
-console.log("Token:", process.env.DUFFEL_ACCESS_TOKEN);
+// Fetch airlines from Duffel to test the API
+fetchDuffelAirlines();

@@ -1,5 +1,8 @@
 const express = require("express");
-const { getAllAirlines } = require("../flightcontrollers/airlineController");
+const {
+  getAllAirlines,
+  createAirline,
+} = require("../controllers/airlineController");
 
 const router = express.Router();
 
@@ -8,4 +11,4 @@ router.post("/", createAirline);
 
 module.exports = router;
 
-console.log(require.resolve("../flightcontrollers/airlineController"));
+console.log(require.resolve("../controllers/airlineController"));
