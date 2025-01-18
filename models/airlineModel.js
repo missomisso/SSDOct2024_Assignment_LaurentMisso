@@ -1,4 +1,5 @@
 const db = require("../db");
+const sql = require("mssql");
 
 const Airline = {
   getAll: async () => {
