@@ -33,8 +33,14 @@ app.listen(PORT, () => {
   console.log(`Duffel API is running on http://localhost:${PORT}`);
 });
 
+app.get("/api/test", (req, res) => {
+  res.status(200).json({ success: true, message: "Test route working!" });
+});
+
+console.log("Duffel instance:", duffel);
+
 // Optional: Test Duffel API on server start
-async function fetchDuffelAirlines() {
+/*async function fetchDuffelAirlines() {
   try {
     const airlines = await duffel.airlines.list();
     console.log("Duffel Airlines:", airlines.data); // Log the fetched airlines
@@ -44,4 +50,4 @@ async function fetchDuffelAirlines() {
 }
 
 // Fetch airlines from Duffel to test the API
-fetchDuffelAirlines();
+fetchDuffelAirlines(); */

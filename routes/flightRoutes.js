@@ -1,5 +1,11 @@
 const express = require("express");
-const { searchFlights } = require("../controllers/searchController");
+
+const {
+  searchFlights,
+  getFlightOffers,
+  bookFlight,
+} = require("../controllers/searchController");
+
 const router = express.Router();
 
 router.get("/offers", getFlightOffers);

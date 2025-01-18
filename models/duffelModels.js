@@ -1,18 +1,12 @@
-duffel.offers.get(OFFER_ID);
+const createOfferRequest = async (data) => {
+  return await duffel.offerRequests.create(data);
+};
 
-duffel.offerRequests.create({
-  slices: [
-    {
-      origin: "NYC",
-      destination: "ATL",
-      departure_date: "2021-06-21",
-    },
-    {
-      origin: "ATL",
-      destination: "NYC",
-      departure_date: "2021-07-21",
-    },
-  ],
-  passengers: [{ type: "adult" }, { type: "adult" }, { age: 1 }],
-  cabin_class: "business",
-});
+const getOfferDetails = async (offerId) => {
+  return await duffel.offers.get(offerId);
+};
+
+module.exports = {
+  createOfferRequest,
+  getOfferDetails,
+};

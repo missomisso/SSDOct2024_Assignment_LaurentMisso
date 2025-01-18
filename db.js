@@ -1,15 +1,14 @@
 const mysql = require("mysql2");
 
+// Create a database connection pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "Laurent",
-  password: process.env.DB_PASSWORD || "160800",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "Bicycles",
-  trustServerCertificate: true,
-  options: {
-    port: 1433, // Default SQL Server port
-    connectionTimeout: 60000, // Connection timeout in milliseconds
-  },
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
 module.exports = pool.promise();
