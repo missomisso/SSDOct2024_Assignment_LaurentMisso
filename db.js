@@ -5,7 +5,7 @@ const config = {
   user: process.env.DB_USER || "Laurent", // SQL Server username
   password: process.env.DB_PASSWORD || "160800", // SQL Server password
   server: process.env.DB_HOST || "localhost", // SQL Server host
-  database: process.env.DB_NAME || "Bicycles", // Database name
+  database: process.env.DB_NAME || "Bicycle", // Database name
   options: {
     encrypt: true, // Use encryption (required for Azure)
     trustServerCertificate: true, // Allow self-signed certificates
@@ -17,16 +17,16 @@ const config = {
   },
 };
 
-// Create a connection pool
-const poolPromise = new sql.ConnectionPool(config)
-  .connect()
-  .then((pool) => {
-    console.log("Connected to MSSQL");
-    return pool;
-  })
-  .catch((err) => {
-    console.error("Database connection failed:", err);
-    throw err;
-  });
+// module.exports = {
+//   user: "Laurent", // Replace with your SQL Server login username
+//   password: "160800", // Replace with your SQL Server login password
+//   server: "localhost",
+//   database: "Bicycle",
+//   trustServerCertificate: true,
+//   options: {
+//     port: 1433, // Default SQL Server port
+//     connectionTimeout: 60000, // Connection timeout in milliseconds
+//   },
+// };
 
-module.exports = poolPromise;
+module.exports = config;

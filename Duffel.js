@@ -1,14 +1,21 @@
 require("dotenv").config(); // Load environment variables
 const express = require("express"); // Import Express
+const app = express(); // Initialize Express app
+const PORT = process.env.PORT || 3000; // Use environment variable or default to 3000
 const bodyParser = require("body-parser"); // Body parsing middleware
 const { Duffel } = require("@duffel/api"); // Duffel API library
 const { errorHandler } = require("./middlewares/errorMiddleware"); // Custom error handler
-const airlineRoutes = require("./routes/airlineRoutes"); // Airline routes
-const regionRoutes = require("./routes/regionRoutes"); // Region routes
+
+// for duffel api
 const flightRoutes = require("./routes/flightRoutes");
 
-const app = express(); // Initialize Express app
-const PORT = process.env.PORT || 3000; // Use environment variable or default to 3000
+// for database
+const airlineRoutes = require("./routes/airlineRoutes"); // Airline routes
+const regionRoutes = require("./routes/regionRoutes"); // Region routes
+const airlineController = require("./controllers/airlineController");
+const searchController = require("./controllers/searchController");
+
+app.get("/getAllAirlines", airlineController.getAllAirlines);
 
 // Initialize Duffel API with token from environment variables
 const duffel = new Duffel({

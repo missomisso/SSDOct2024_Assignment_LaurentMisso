@@ -1,6 +1,11 @@
 const db = require("../db");
 const sql = require("mssql");
 
+
+class Model {
+  constructor 
+}
+
 const Region = {
   getAll: async () => {
     const [rows] = await db.query("SELECT * FROM Regions");
