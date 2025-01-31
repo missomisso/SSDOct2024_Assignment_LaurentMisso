@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Duffel API Project</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <h1>Welcome to the Duffel Project</h1>
-  </body>
+<html lang="en">
+<head>
+  <title>Passenger Form</title>
+</head>
+<body>
+  <form id="passenger-form">
+    <input type="text" id="name" placeholder="Full Name" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="text" id="phone" placeholder="Phone Number" />
+    <input type="number" id="airline-id" placeholder="Airline ID" required />
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById("passenger-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const response = await fetch("http://localhost:3000/api/passengers/passenger", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          FullName: document.getElementById("name").value,
+          Email: document.getElementById("email").value,
+          PhoneNumber: document.getElementById("phone").value,
+          AirlineID: document.getElementById("airline-id").value,
+        }),
+      });
+      const data = await response.json();
+      alert(data.policy);
+    });
+  </script>
+</body>
 </html>
