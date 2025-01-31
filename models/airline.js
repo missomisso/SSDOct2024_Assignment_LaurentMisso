@@ -1,8 +1,8 @@
 const sql = require("mssql");
 const dbConfig = require("../dbConfig");
-const { Airlines } = require("@duffel/api/supportingResources");
+// const { Airlines } = require("@duffel/api/supportingResources");
 
-class airlines {
+class Airlines {
   constructor({ AirlineID, AirlineName, IATA_Code, ICAO_Code, BicyclePolicy }) {
     this.AirlineID = AirlineID;
     this.AirlineName = AirlineName;
@@ -72,4 +72,4 @@ module.exports = Airlines;
   },
 }; */
 
-module.exports = Airline;
+// module.exports = Airline;

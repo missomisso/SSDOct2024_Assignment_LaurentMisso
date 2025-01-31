@@ -1,4 +1,4 @@
-const airlines = require("../models/airline");
+const Airlines = require("../models/airline");
 const BicycleSizeRestriction = require("../models/bicycleSizeRestriction");
 
 const getAllAirlines = async (req, res) => {
