@@ -1,11 +1,15 @@
 const express = require("express");
-const { getAllAirlines, getAirlineDetails, createAirline } = require("../controllers/airlineController");
+const airlineController = require("../controllers/airlineController");
+const { createAirline } = require("../controllers/airlineController");
 
 const router = express.Router();
 
-router.get("/", getAllAirlines); // GET /api/airlines
-router.get("/:id", getAirlineDetails); // GET /api/airlines/:id
+router.get("/", airlineController.getAllAirlines);
+router.get("/:id", airlineController.getAirlineDetails);
 router.post("/", createAirline); // POST /api/airlines
+router.get("/bicycle-policy/name/:name", airlineController.getBicyclePolicyByAirlineName);
+router.get("/bicycle-policy/id/:id", airlineController.getBicyclePolicyByAirlineId);
+
 
 module.exports = router;
 

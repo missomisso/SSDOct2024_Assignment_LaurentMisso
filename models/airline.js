@@ -15,7 +15,7 @@ class Airlines {
     const connection = await sql.connect(dbConfig);
     const result = await connection.query("SELECT * FROM Airlines");
     connection.close();
-    return result.recordset.map((row) => new Airline(row));
+    return result.recordset.map((row) => new Airlines(row));
   }
 
   static async getAirlineById(id) {
@@ -42,6 +42,33 @@ class Airlines {
     connection.close();
     return this.getAirlineById(result.recordset[0].AirlineID);
   }
+
+  static async getBicyclePolicyByAirlineName(airlineName) {
+    const connection = await sql.connect(dbConfig);
+    const request = connection.request();
+    request.input('AirlineName', sql.VarChar, airlineName);
+    const result = await request.query("SELECT BicyclePolicy FROM Airlines WHERE AirlineName = @AirlineName");
+    connection.close();
+    if (result.recordset.length > 0) {
+      return result.recordset[0].BicyclePolicy;
+    } else {
+      throw new Error('Airline not found');
+    }
+  }
+
+  static async getBicyclePolicyByAirlineId(airlineId) {
+    const connection = await sql.connect(dbConfig);
+    const request = connection.request();
+    request.input('AirlineID', sql.Int, airlineId);
+    const result = await request.query("SELECT BicyclePolicy FROM Airlines WHERE AirlineID = @AirlineID");
+    connection.close();
+    if (result.recordset.length > 0) {
+      return result.recordset[0].BicyclePolicy;
+    } else {
+      throw new Error('Airline not found');
+    }
+  }
+  
 }
 
 module.exports = Airlines;

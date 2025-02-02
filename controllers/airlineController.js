@@ -3,7 +3,7 @@ const BicycleSizeRestriction = require("../models/bicycleSizeRestriction");
 
 const getAllAirlines = async (req, res) => {
   try {
-    const airlines = await Airline.getAllAirlines();
+    const airlines = await Airlines.getAllAirlines();
     res.status(200).json({ success: true, data: airlines });
   } catch (error) {
     console.error(error);
@@ -27,6 +27,28 @@ const getAirlineDetails = async (req, res) => {
   }
 };
 
+const getBicyclePolicyByAirlineName = async (req, res) => {
+  try {
+    const airlineName = req.params.name;
+    const bicyclePolicy = await Airline.getBicyclePolicyByAirlineName(airlineName);
+    res.status(200).json({ success: true, data: { airlineName, bicyclePolicy } });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Error retrieving bicycle policy." });
+  }
+};
+
+const getBicyclePolicyByAirlineId = async (req, res) => {
+  try {
+    const airlineId = parseInt(req.params.id, 10);
+    const bicyclePolicy = await Airline.getBicyclePolicyByAirlineId(airlineId);
+    res.status(200).json({ success: true, data: { airlineId, bicyclePolicy } });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Error retrieving bicycle policy." });
+  }
+};
+
 const createAirline = async (req, res) => {
   try {
     const { AirlineName, IATA_Code, ICAO_Code, BicyclePolicy } = req.body;
@@ -45,7 +67,11 @@ const createAirline = async (req, res) => {
   }
 };
 
-module.exports = { getAllAirlines, getAirlineDetails, createAirline };
+
+
+module.exports = { getAllAirlines, getAirlineDetails, createAirline,  getBicyclePolicyByAirlineName,
+  getBicyclePolicyByAirlineId,
+};
 
 
 
