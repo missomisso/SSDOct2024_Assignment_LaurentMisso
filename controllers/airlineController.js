@@ -1,9 +1,9 @@
-const Airlines = require("../models/airline");
+const Airline = require("../models/airline");
 const BicycleSizeRestriction = require("../models/bicycleSizeRestriction");
 
 const getAllAirlines = async (req, res) => {
   try {
-    const airlines = await Airlines.getAllAirlines();
+    const airlines = await Airline.getAllAirlines();
     res.status(200).json({ success: true, data: airlines });
   } catch (error) {
     console.error(error);

@@ -1,4 +1,4 @@
-const BicycleSizeRestriction = require("../models/bicycleSizeRestriction");
+const bicycleSizeRestriction = require("../models/bicycleSizeRestriction");
 
 const addRestrictions = async (req, res) => {
   try {

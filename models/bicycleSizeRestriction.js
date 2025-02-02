@@ -1,7 +1,7 @@
 const sql = require("mssql");
 const dbConfig = require("../dbConfig");
 
-class BicycleSizeRestriction {
+class bicycleSizeRestriction {
   constructor({ RestrictionID, AirlineID, MaxWeight, MaxLength, MaxWidth, MaxHeight }) {
     this.RestrictionID = RestrictionID;
     this.AirlineID = AirlineID;
@@ -19,11 +19,11 @@ class BicycleSizeRestriction {
       SELECT * FROM BicycleSizeRestrictions WHERE AirlineID = @airlineId
     `);
     connection.close();
-    return result.recordset.map((row) => new BicycleSizeRestriction(row));
+    return result.recordset.map((row) => new bicycleSizeRestriction(row));
   }
 }
 
-module.exports = BicycleSizeRestriction;
+module.exports = bicycleSizeRestriction;
 
 
 

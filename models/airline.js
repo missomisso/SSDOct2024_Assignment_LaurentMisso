@@ -1,8 +1,7 @@
 const sql = require("mssql");
 const dbConfig = require("../dbConfig");
-// const { Airlines } = require("@duffel/api/supportingResources");
 
-class Airlines {
+class Airline {
   constructor({ AirlineID, AirlineName, IATA_Code, ICAO_Code, BicyclePolicy }) {
     this.AirlineID = AirlineID;
     this.AirlineName = AirlineName;
@@ -15,7 +14,7 @@ class Airlines {
     const connection = await sql.connect(dbConfig);
     const result = await connection.query("SELECT * FROM Airlines");
     connection.close();
-    return result.recordset.map((row) => new Airlines(row));
+    return result.recordset.map((row) => new Airline(row));
   }
 
   static async getAirlineById(id) {
@@ -71,32 +70,7 @@ class Airlines {
   
 }
 
-module.exports = Airlines;
+module.exports = Airline;
 
 
 
-
-
-/*const Airline = {
-  getAll: async () => {
-    const [rows] = await db.query("SELECT * FROM Airlines");
-    return rows;
-  },
-  getById: async (id) => {
-    const [rows] = await db.query(
-      "SELECT * FROM Airlines WHERE AirlineID = ?",
-      [id]
-    );
-    return rows[0];
-  },
-  create: async (data) => {
-    const { AirlineName, IATA_Code, ICAO_Code } = data;
-    const [result] = await db.query(
-      "INSERT INTO Airlines (AirlineName, IATA_Code, ICAO_Code) VALUES (?, ?, ?)",
-      [AirlineName, IATA_Code, ICAO_Code]
-    );
-    return result.insertId;
-  },
-}; */
-
-// module.exports = Airline;
