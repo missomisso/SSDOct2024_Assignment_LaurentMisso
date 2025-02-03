@@ -1,9 +1,9 @@
-const Airline = require("../models/airline");
-const BicycleSizeRestriction = require("../models/bicycleSizeRestriction");
+const airline = require("../models/airline");
+const bicycleSizeRestriction = require("../models/bicycleSizeRestriction");
 
 const getAllAirlines = async (req, res) => {
   try {
-    const airlines = await Airline.getAllAirlines();
+    const airlines = await airline.getAllAirlines();
     res.status(200).json({ success: true, data: airlines });
   } catch (error) {
     console.error(error);
@@ -14,12 +14,12 @@ const getAllAirlines = async (req, res) => {
 const getAirlineDetails = async (req, res) => {
   try {
     const airlineId = parseInt(req.params.id, 10);
-    const airline = await Airline.getAirlineById(airlineId);
+    const airline = await airline.getAirlineById(airlineId);
     if (!airline) {
       return res.status(404).json({ success: false, message: "Airline not found." });
     }
 
-    const restrictions = await BicycleSizeRestriction.getByAirlineId(airlineId);
+    const restrictions = await bicycleSizeRestriction.getByAirlineId(airlineId);
     res.status(200).json({ success: true, data: { airline, restrictions } });
   } catch (error) {
     console.error(error);
@@ -30,7 +30,7 @@ const getAirlineDetails = async (req, res) => {
 const getBicyclePolicyByAirlineName = async (req, res) => {
   try {
     const airlineName = req.params.name;
-    const bicyclePolicy = await Airline.getBicyclePolicyByAirlineName(airlineName);
+    const bicyclePolicy = await airline.getBicyclePolicyByAirlineName(airlineName);
     res.status(200).json({ success: true, data: { airlineName, bicyclePolicy } });
   } catch (error) {
     console.error(error);
@@ -41,7 +41,7 @@ const getBicyclePolicyByAirlineName = async (req, res) => {
 const getBicyclePolicyByAirlineId = async (req, res) => {
   try {
     const airlineId = parseInt(req.params.id, 10);
-    const bicyclePolicy = await Airline.getBicyclePolicyByAirlineId(airlineId);
+    const bicyclePolicy = await airline.getBicyclePolicyByAirlineId(airlineId);
     res.status(200).json({ success: true, data: { airlineId, bicyclePolicy } });
   } catch (error) {
     console.error(error);
@@ -74,32 +74,3 @@ module.exports = { getAllAirlines, getAirlineDetails, createAirline,  getBicycle
 };
 
 
-
-
-
-// const Airline = require("../models/airlineModel");
-
-// const getAllAirlines = async (req, res) => {
-//   try {
-//     const airlines = await Airline.getAll();
-//     res.status(200).json(airlines);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// const createAirline = async (req, res) => {
-//   try {
-//     const newAirlineId = await Airline.create(req.body);
-//     res
-//       .status(201)
-//       .json({ message: "Airline created", AirlineID: newAirlineId });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// module.exports = {
-//   getAllAirlines,
-//   createAirline,
-// };

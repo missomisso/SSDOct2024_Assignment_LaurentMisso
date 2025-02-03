@@ -2,7 +2,7 @@ const sql = require("mssql");
 const dbConfig = require("../dbConfig");
 
 class Passenger {
-  constructor({ PassengerID, FullName, Email, PhoneNumber, AirlineID }) {
+  constructor(PassengerID, FullName, Email, PhoneNumber, AirlineID) {
     this.PassengerID = PassengerID;
     this.FullName = FullName;
     this.Email = Email;

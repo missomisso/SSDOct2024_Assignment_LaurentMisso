@@ -2,7 +2,7 @@ const sql = require("mssql");
 const dbConfig = require("../dbConfig");
 
 class Airline {
-  constructor({ AirlineID, AirlineName, IATA_Code, ICAO_Code, BicyclePolicy }) {
+  constructor(AirlineID, AirlineName, IATA_Code, ICAO_Code, BicyclePolicy) {
     this.AirlineID = AirlineID;
     this.AirlineName = AirlineName;
     this.IATA_Code = IATA_Code;
@@ -46,7 +46,7 @@ class Airline {
     const connection = await sql.connect(dbConfig);
     const request = connection.request();
     request.input('AirlineName', sql.VarChar, airlineName);
-    const result = await request.query("SELECT BicyclePolicy FROM Airlines WHERE AirlineName = @AirlineName");
+    const result = await request.query(`SELECT BicyclePolicy FROM Airlines WHERE AirlineName LIKE '%${airlineName}%'`);
     connection.close();
     if (result.recordset.length > 0) {
       return result.recordset[0].BicyclePolicy;

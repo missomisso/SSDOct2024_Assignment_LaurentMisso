@@ -1,25 +1,10 @@
 const express = require("express");
+const bicycleSizeRestrictionController = require("../controllers/bicycleSizeRestrictionController");
 const { addRestrictions } = require("../controllers/bicycleSizeRestrictionController");
 
 const router = express.Router();
 
+router.get("/:name", bicycleSizeRestrictionController.findRestrictionsByAirlineName); 
 router.post("/", addRestrictions); // POST /api/restrictions
 
 module.exports = router;
-
-
-
-
-
-// const express = require("express");
-// const {
-//   getAllRegions,
-//   createRegion,
-// } = require("../controllers/regionController");
-
-// const router = express.Router();
-
-// router.get("/", getAllRegions);
-// router.post("/", createRegion);
-
-// module.exports = router;
