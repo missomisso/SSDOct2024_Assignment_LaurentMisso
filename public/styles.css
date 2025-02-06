@@ -1,4 +1,141 @@
+/* Apply the Inter font */
 body {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif, sans-serif;
-  margin: 20px;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background 0.3s ease-in-out;
 }
+
+/* Dark Mode */
+body.dark-mode {
+  background: #222;
+  color: #f4f4f4;
+}
+
+/* Container */
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  backdrop-filter: blur(10px);
+  transition: background 0.3s ease-in-out;
+}
+
+/* Dark Mode Container */
+body.dark-mode .container {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Title Styling */
+h1 {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+/* Subtitle */
+.subtitle {
+  font-weight: 300;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  background: #ffcc00;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.dark-mode-toggle:hover {
+  background: #ff9900;
+}
+
+/* Beautiful Search Bar */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+input {
+  width: 75%;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+  color: #333;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+}
+
+/* Stylish Button */
+button {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  background: #ffcc00;
+  color: #333;
+  font-weight: 600;
+  transition: 0.3s;
+  font-size: 16px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Spinner */
+.spinner {
+  font-size: 40px;
+  margin-top: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none;
+}
+
+/* Stylish Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #007bff;
+  color: white;
+}
+
+body.dark-mode th {
+  background: #444;
+}
+

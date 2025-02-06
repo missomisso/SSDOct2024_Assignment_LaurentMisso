@@ -9,7 +9,7 @@ router.get("/:id", airlineController.getAirlineDetails);
 router.post("/", createAirline); // POST /api/airlines
 router.get("/bicycle-policy/name/:name", airlineController.getBicyclePolicyByAirlineName);
 router.get("/bicycle-policy/id/:id", airlineController.getBicyclePolicyByAirlineId);
-
+ 
 
 module.exports = router;
 

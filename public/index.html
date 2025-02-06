@@ -1,68 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Passenger Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Policy Finder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <form id="passenger-form">
-    <input type="text" id="name" placeholder="Full Name" required />
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="text" id="phone" placeholder="Phone Number" />
-    <input type="number" id="airline-id" placeholder="Airline ID" required />
-    <button type="submit">Submit</button>
-  </form>
 
-  <hr>
+    <div class="container">
+        <h1>Find Your Airline Policy</h1>
+        <p class="subtitle">Search for an airline to check its bicycle policy.</p>
 
-  <form id="search-form">
-    <input type="text" id="airline-name" placeholder="Airline Name" required />
-    <button type="submit">Search</button>
-  </form>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        
+        <div class="search-container">
+            <input type="text" id="airlineInput" placeholder="Enter Airline Name">
+            <button onclick="fetchPolicy()">🔍 Search</button>
+        </div>
 
-  <div id="restrictions-result"></div>
+        <div id="spinner" class="spinner hidden">
+            ✈️
+        </div>
 
-  <script>
-    document.getElementById("passenger-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const response = await fetch("http://localhost:3000/api/passengers/passenger", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          FullName: document.getElementById("name").value,
-          Email: document.getElementById("email").value,
-          Phone: document.getElementById("phone").value,
-          AirlineID: document.getElementById("airline-id").value,
-        }),
-      });
-      const result = await response.json();
-      console.log(result);
-    });
+        <div id="result"></div>
+        <div id="restrictions"></div>
+    </div>
 
-    document.getElementById("search-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const airlineName = document.getElementById("airline-name").value;
-      const response = await fetch(`http://localhost:3000/api/restrictions/name/${airlineName}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      const result = await response.json();
-      const restrictionsResult = document.getElementById("restrictions-result");
-      if (result.success) {
-        restrictionsResult.innerHTML = `
-          <h3>Restrictions for ${airlineName}</h3>
-          <ul>
-            ${result.data.map(restriction => `
-              <li>Max Weight: ${restriction.MaxWeight}</li>
-              <li>Max Length: ${restriction.MaxLength}</li>
-              <li>Max Width: ${restriction.MaxWidth}</li>
-              <li>Max Height: ${restriction.MaxHeight}</li>
-            `).join('')}
-          </ul>
-        `;
-      } else {
-        restrictionsResult.innerHTML = `<p>${result.message}</p>`;
-      }
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
