@@ -4,7 +4,7 @@ const { addRestrictions } = require("../controllers/bicycleSizeRestrictionContro
 
 const router = express.Router();
 
-router.get("/:name", bicycleSizeRestrictionController.findRestrictionsByAirlineName); 
+router.get("/name/:name", bicycleSizeRestrictionController.findRestrictionsByAirlineName); 
 router.post("/", addRestrictions); // POST /api/restrictions
 
 module.exports = router;

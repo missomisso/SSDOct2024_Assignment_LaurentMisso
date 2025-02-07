@@ -9,17 +9,24 @@
 </head>
 <body>
 
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">☀️ / 🌙</button>
+
     <div class="container">
         <h1>Find Your Airline Policy</h1>
-        <p class="subtitle">Search for an airline to check its bicycle policy.</p>
+        <p class="subtitle">Select an airline to check its bicycle policy.</p>
 
-        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-        
-        <div class="search-container">
-            <input type="text" id="airlineInput" placeholder="Enter Airline Name">
-            <button onclick="fetchPolicy()">🔍 Search</button>
+        <!-- Airline Dropdown (Loads when clicked) -->
+        <select id="airlineDropdown" onclick="loadAirlines()">
+            <option value="">Select an Airline</option>
+        </select>
+
+        <!-- Search Button (Separate) -->
+        <div class="search-icon-container">
+            <button onclick="fetchPolicy()">🔍</button>
         </div>
 
+        <!-- Airplane Loading Spinner -->
         <div id="spinner" class="spinner hidden">
             ✈️
         </div>

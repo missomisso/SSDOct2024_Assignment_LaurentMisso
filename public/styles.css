@@ -1,7 +1,7 @@
 /* Apply the Inter font */
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #007bff, #0056b3);
+  background: linear-gradient(135deg, #c3272e, #9e1b21);
   color: #ffffff;
   text-align: center;
   margin: 0;
@@ -19,14 +19,35 @@ body.dark-mode {
   color: #f4f4f4;
 }
 
-/* Container */
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: black;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 2px solid white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.dark-mode-toggle:hover {
+  background: white;
+  color: black;
+  border: 2px solid black;
+}
+
+/* Main Container */
 .container {
   background: rgba(255, 255, 255, 0.15);
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   width: 90%;
-  max-width: 400px;
+  max-width: 500px;
   backdrop-filter: blur(10px);
   transition: background 0.3s ease-in-out;
 }
@@ -49,93 +70,56 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Dark Mode Toggle */
-.dark-mode-toggle {
-  background: #ffcc00;
-  color: #333;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: none;
+/* Airline Dropdown */
+#airlineDropdown {
+  width: 80%;
+  padding: 12px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  color: black;
+  background: white;
   cursor: pointer;
-  font-weight: 600;
-  margin-bottom: 15px;
+  transition: all 0.3s ease-in-out;
 }
 
-.dark-mode-toggle:hover {
-  background: #ff9900;
+/* Dropdown expands downwards */
+#airlineDropdown:focus {
+  background: white;
+  box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
 }
 
-/* Beautiful Search Bar */
-.search-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+/* Scrollable Dropdown */
+#airlineDropdown option {
+  padding: 10px;
 }
 
-input {
-  width: 75%;
+#airlineDropdown {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Search Icon Button */
+.search-icon-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.search-icon-container button {
+  background: #ffcc00;
+  color: black;
   padding: 12px;
   border: none;
-  border-radius: 25px;
-  outline: none;
-  font-size: 16px;
-  text-align: center;
-  color: #333;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-  transition: 0.3s;
-}
-
-/* Stylish Button */
-button {
-  padding: 12px 16px;
-  border: none;
-  border-radius: 25px;
+  border-radius: 50%;
   cursor: pointer;
-  background: #ffcc00;
-  color: #333;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: bold;
   transition: 0.3s;
-  font-size: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  width: 50px;
+  height: 50px;
 }
 
-/* Spinner */
-.spinner {
-  font-size: 40px;
-  margin-top: 20px;
-  animation: spin 1s linear infinite;
+.search-icon-container button:hover {
+  background: #ff9900;
 }
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.hidden {
-  display: none;
-}
-
-/* Stylish Table */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-}
-
-th {
-  background: #007bff;
-  color: white;
-}
-
-body.dark-mode th {
-  background: #444;
-}
-
