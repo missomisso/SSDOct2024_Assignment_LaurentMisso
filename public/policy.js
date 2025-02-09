@@ -40,20 +40,21 @@ function fetchPolicy(event) {
     .then(data => {
         console.log("Policy Data:", data);
 
-        if (!data || !data.restrictions) {
+        if (!data) {
             document.getElementById("result").innerHTML = 
                 `<p>No bicycle policy found for ${selectedAirline}.</p>`;
             return;
         }
 
-        let airline = data.AirlineID || "N/A";
-            let maxWeight = data.MaxWeight ? `${data.MaxWeight} kg` : "N/A";
-            let maxLength = data.MaxLength ? `${data.MaxLength} cm` : "N/A";
-            let maxWidth = data.MaxWidth ? `${data.MaxWidth} cm` : "N/A";
-            let maxHeight = data.MaxHeight ? `${data.MaxHeight} cm` : "N/A";
+       // let airline = data.AirlineID || "N/A";
+       console.log("Data", data);
+            let maxWeight = data.data[0].MaxWeight ? `${data.data[0].MaxWeight} kg` : "N/A";
+            let maxLength = data.data[0].MaxLength ? `${data.data[0].MaxLength} cm` : "N/A";
+            let maxWidth = data.data[0].MaxWidth ? `${data.data[0].MaxWidth} cm` : "N/A";
+            let maxHeight = data.data[0].MaxHeight ? `${data.data[0].MaxHeight} cm` : "N/A";
 
-            resultContainer.innerHTML = `
-            <h3>${airline} Bicycle Policy</h3>
+            document.getElementById("result").innerHTML = `
+             
             <table border="1" class="policy-table">
                 <tr>
                     <th>Max Weight</th>
@@ -69,7 +70,7 @@ function fetchPolicy(event) {
                 </tr>
             </table>
         `;
-        resultContainer.style.display = "block";
+        // resultContainer.style.display = "block";
     })
     .catch(error => {
         console.error("Error fetching policy:", error);
