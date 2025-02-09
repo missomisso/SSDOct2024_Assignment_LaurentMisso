@@ -3,37 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airline Policy Finder</title>
+    <title>Flight Search & Bicycle Policy Finder</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Dark Mode Toggle -->
-    <button class="dark-mode-toggle" onclick="toggleDarkMode()">☀️ / 🌙</button>
+    <!-- Navigation Bar -->
+    <header>
+        <h1>Travel Finder</h1>
+    </header>
 
-    <div class="container">
-        <h1>Find Your Airline Policy</h1>
-        <p class="subtitle">Select an airline to check its bicycle policy.</p>
+    <!-- Hero Section (Search Form) -->
+    <section class="hero">
+        <div class="search-container">
+            <h2>Find Your Flight</h2>
+            <div class="search-box">
+                <input type="text" id="origin" placeholder="From (Airport)">
+                <input type="text" id="destination" placeholder="To (Airport)">
+                <input type="date" id="departure_date">
+                <button onclick="searchFlights()">Search Flights</button>
+            </div>
+        </div>
+    </section>
 
-        <!-- Airline Dropdown (Loads when clicked) -->
+    <!-- Flight Offers Section -->
+    <section id="offers-container" class="hidden">
+        <h2>Available Flights</h2>
+        <ul id="offers-list"></ul>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking-container" class="hidden">
+        <h2>Confirm Booking</h2>
+        <p id="selected-offer"></p>
+        <button onclick="bookFlight()">Book Flight</button>
+        <div id="booking-result"></div>
+    </section>
+
+    <hr>
+
+    <!-- Bicycle Policy Finder -->
+    <section class="policy-container">
+        <h2>Check Airline Bicycle Policy</h2>
         <select id="airlineDropdown" onclick="loadAirlines()">
             <option value="">Select an Airline</option>
         </select>
-
-        <!-- Search Button (Separate) -->
-        <div class="search-icon-container">
-            <button onclick="fetchPolicy()">🔍</button>
-        </div>
-
-        <!-- Airplane Loading Spinner -->
-        <div id="spinner" class="spinner hidden">
-            ✈️
-        </div>
-
+        <button onclick="fetchPolicy()">Find Policy</button>
         <div id="result"></div>
-        <div id="restrictions"></div>
-    </div>
+    </section>
 
     <script src="script.js"></script>
 </body>

@@ -1,125 +1,115 @@
-/* Apply the Inter font */
+/* General Styles */
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #c3272e, #9e1b21);
-  color: #ffffff;
-  text-align: center;
+  background: #f8f9fa;
+  color: #333;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  transition: background 0.3s ease-in-out;
+  text-align: center;
 }
 
-/* Dark Mode */
-body.dark-mode {
-  background: #222;
-  color: #f4f4f4;
-}
-
-/* Dark Mode Toggle */
-.dark-mode-toggle {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: black;
+/* Header */
+header {
+  background: #003366;
   color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: 2px solid white;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.dark-mode-toggle:hover {
-  background: white;
-  color: black;
-  border: 2px solid black;
-}
-
-/* Main Container */
-.container {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 500px;
-  backdrop-filter: blur(10px);
-  transition: background 0.3s ease-in-out;
-}
-
-/* Dark Mode Container */
-body.dark-mode .container {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* Title Styling */
-h1 {
-  font-weight: 600;
+  padding: 20px;
   font-size: 24px;
 }
 
-/* Subtitle */
-.subtitle {
-  font-weight: 300;
-  font-size: 14px;
-  margin-bottom: 20px;
+/* Hero Section */
+.hero {
+  background: url("assets/hero-bg.jpg") no-repeat center center/cover;
+  padding: 60px 20px;
 }
 
-/* Airline Dropdown */
-#airlineDropdown {
-  width: 80%;
-  padding: 12px;
-  border: 2px solid #fff;
-  border-radius: 5px;
-  font-size: 16px;
-  text-align: center;
-  color: black;
-  background: white;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+.search-container {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  display: inline-block;
 }
 
-/* Dropdown expands downwards */
-#airlineDropdown:focus {
-  background: white;
-  box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
-}
-
-/* Scrollable Dropdown */
-#airlineDropdown option {
-  padding: 10px;
-}
-
-#airlineDropdown {
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-/* Search Icon Button */
-.search-icon-container {
+.search-box {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
   margin-top: 15px;
-  text-align: center;
 }
 
-.search-icon-container button {
+.search-box input, .search-box button {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+.search-box input {
+  width: 200px;
+}
+
+.search-box button {
   background: #ffcc00;
   color: black;
-  padding: 12px;
-  border: none;
-  border-radius: 50%;
   cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
-  transition: 0.3s;
-  width: 50px;
-  height: 50px;
 }
 
-.search-icon-container button:hover {
+.search-box button:hover {
   background: #ff9900;
+}
+
+/* Flight Offers */
+#offers-container {
+  margin-top: 20px;
+}
+
+#offers-list {
+  list-style: none;
+  padding: 0;
+}
+
+#offers-list li {
+  background: white;
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  text-align: left;
+}
+
+/* Booking */
+#booking-container {
+  margin-top: 20px;
+}
+
+/* Bicycle Policy */
+.policy-container {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 60%;
+  margin: auto;
+}
+
+.policy-container select, .policy-container button {
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.policy-container button {
+  background: #003366;
+  color: white;
+  cursor: pointer;
+}
+
+.policy-container button:hover {
+  background: #002244;
+}
+
+/* Hidden Elements */
+.hidden {
+  display: none;
 }

@@ -1,83 +1,66 @@
-// ✅ Load Airlines and Populate Dropdown Automatically
+// ✅ Load Airlines for Dropdown
 function loadAirlines() {
     fetch("/api/airlines")
         .then(response => response.json())
         .then(data => {
-            console.log("API Response:", data); // ✅ Debugging log
-            if (data.success && Array.isArray(data.data) && data.data.length > 0) {
-                let dropdown = document.getElementById("airlineDropdown");
-                dropdown.innerHTML = '<option value="">Select an Airline</option>'; // Reset
-
-                data.data.forEach(airline => {
-                    if (!airline || !airline.AirlineName) return; // ✅ Skip undefined values
-
-                    let option = document.createElement("option");
-                    option.value = airline.AirlineName.trim();
-                    option.textContent = airline.AirlineName;
-                    dropdown.appendChild(option);
-                });
-            } else {
-                alert("No airlines found.");
-            }
+            let dropdown = document.getElementById("airlineDropdown");
+            dropdown.innerHTML = '<option value="">Select an Airline</option>';
+            data.data.forEach(airline => {
+                let option = document.createElement("option");
+                option.value = airline.AirlineName.trim();
+                option.textContent = airline.AirlineName;
+                dropdown.appendChild(option);
+            });
         })
-        .catch(error => {
-            console.error("Error loading airlines:", error);
-            alert("Error loading airlines. Please try again.");
-        });
+        .catch(error => console.error("Error loading airlines:", error));
 }
 
-// ✅ Ensure dropdown auto-loads on page load
-window.onload = loadAirlines;
+// ✅ Search Flights
+function searchFlights() {
+    const origin = document.getElementById("origin").value;
+    const destination = document.getElementById("destination").value;
+    const departureDate = document.getElementById("departure_date").value;
 
-// ✅ Load airlines automatically when page loads
-window.onload = loadAirlines;
-
-function fetchPolicy() {
-    const dropdown = document.getElementById("airlineDropdown");
-    const airlineName = dropdown.value ? dropdown.value.trim() : null; // ✅ Ensure value is valid
-
-    if (!airlineName || airlineName === "Select an Airline") {
-        document.getElementById("result").innerHTML = "<p>Please select an airline.</p>";
+    if (!origin || !destination || !departureDate) {
+        alert("Please fill all fields.");
         return;
     }
 
-    // Show Spinner
-    document.getElementById("spinner").classList.remove("hidden");
-    document.getElementById("result").innerHTML = "";
-    document.getElementById("restrictions").innerHTML = "";
-
-    // Simulated delay for UI effect (3s)
-    setTimeout(() => {
-        fetch(`/api/airlines/bicycle-policy/name/${encodeURIComponent(airlineName)}`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("spinner").classList.add("hidden");
-                if (data.success) {
-                    document.getElementById("result").innerHTML = `
-                        <h3>${data.data.airlineName}</h3>
-                        <p><strong>Bicycle Policy:</strong> ${data.data.bicyclePolicy || "Not Available"}</p>
-                    `;
-                    fetchRestrictions(airlineName);
-                } else {
-                    document.getElementById("result").innerHTML = `<p>No policy found for "${airlineName}".</p>`;
-                }
-            })
-            .catch(error => {
-                document.getElementById("spinner").classList.add("hidden");
-                console.error("Fetch Error:", error);
-                document.getElementById("result").innerHTML = `<p>❌ Error retrieving data: ${error.message}</p>`;
-            });
-    }, 3000); // 3-second delay
+    fetch("/api/flights/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ origin, destination, departure_date: departureDate })
+    })
+    .then(response => response.json())
+    .then(data => {
+        displayOffers(data.data);
+    })
+    .catch(error => console.error("Error searching flights:", error));
 }
 
+// ✅ Display Flight Offers
+function displayOffers(offers) {
+    const offersContainer = document.getElementById("offers-container");
+    const offersList = document.getElementById("offers-list");
+    offersContainer.classList.remove("hidden");
+    offersList.innerHTML = "";
 
-// ✅ Dark Mode Toggle (Same as Before)
-function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+    offers.forEach(offer => {
+        let listItem = document.createElement("li");
+        listItem.innerHTML = `
+            <strong>${offer.owner.name}</strong> - ${offer.total_amount} ${offer.total_currency}
+            <button onclick="selectOffer('${offer.id}', '${offer.owner.name}', '${offer.total_amount}')">Select</button>
+        `;
+        offersList.appendChild(listItem);
+    });
 }
 
-// ✅ Ensure Dark Mode Persists
-if (localStorage.getItem("darkMode") === "true") {
-    document.body.classList.add("dark-mode");
+// ✅ Book Flight
+function bookFlight() {
+    alert("Flight booking feature will be available soon!");
+}
+
+// ✅ Fetch Airline Policy
+function fetchPolicy() {
+    alert("Fetching airline policy...");
 }
