@@ -67,10 +67,30 @@ const createAirline = async (req, res) => {
   }
 };
 
+const deleteAirline = async (req, res) => {
+  try {
+      const { id } = req.params; // Get airline ID from request URL
+
+      // ✅ Check if airline exists
+      const airlineExists = await airline.getAirlineById(id);
+      if (!airlineExists) {
+          return res.status(404).json({ success: false, message: "Airline not found." });
+      }
+
+      // ✅ Delete airline from DB
+      await airline.deleteAirline(id);
+      res.json({ success: true, message: "Airline deleted successfully!" });
+
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: "Error deleting airline." });
+  }
+};
+
 
 
 module.exports = { getAllAirlines, getAirlineDetails, createAirline,  getBicyclePolicyByAirlineName,
-  getBicyclePolicyByAirlineId,
+  getBicyclePolicyByAirlineId, deleteAirline
 };
 
 

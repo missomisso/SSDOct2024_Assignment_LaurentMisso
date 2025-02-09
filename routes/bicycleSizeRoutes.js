@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get("/name/:name", bicycleSizeRestrictionController.findRestrictionsByAirlineName); 
 router.post("/", addRestrictions); // POST /api/restrictions
+router.delete("/:id", bicycleSizeRestrictionController.deleteRestriction); // DELETE /api/restrictions/:id
 
 module.exports = router;

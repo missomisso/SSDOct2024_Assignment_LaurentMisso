@@ -2,7 +2,7 @@ const sql = require("mssql");
 const dbConfig = require("../dbConfig");
 
 class BicycleSizeRestriction {
-  constructor({ AirlineID, MaxWeight, MaxLength, MaxWidth, MaxHeight }) {
+  constructor( AirlineID, MaxWeight, MaxLength, MaxWidth, MaxHeight ) {
     this.AirlineID = AirlineID;
     this.MaxWeight = MaxWeight;
     this.MaxLength = MaxLength;
@@ -34,7 +34,7 @@ class BicycleSizeRestriction {
     return result.recordset.map((row) => new BicycleSizeRestriction(row));
   }
 
-  static async addRestrictions({ AirlineID, MaxWeight, MaxLength, MaxWidth, MaxHeight }) {
+  static async addRestrictions( AirlineID, MaxWeight, MaxLength, MaxWidth, MaxHeight ) {
     const connection = await sql.connect(dbConfig);
     const request = connection.request();
     request.input("AirlineID", sql.Int, AirlineID);
@@ -48,6 +48,27 @@ class BicycleSizeRestriction {
     `);
     connection.close();
   }
+
+  static async getRestrictionById(id) {
+    const connection = await sql.connect(dbConfig);
+    const result = await connection.request()
+        .input("id", sql.Int, id)
+        .query("SELECT * FROM BicycleSizeRestrictions WHERE RestrictionID = @id");
+    connection.close();
+    return result.recordset.length > 0 ? result.recordset[0] : null;
+  }
+
+  static async deleteRestriction(id) {
+    const connection = await sql.connect(dbConfig);
+    await connection.request()
+        .input("id", sql.Int, id)
+        .query("DELETE FROM BicycleSizeRestrictions WHERE RestrictionID = @id");
+    connection.close();
+  }
 }
+
+
+
+
 
 module.exports = BicycleSizeRestriction;

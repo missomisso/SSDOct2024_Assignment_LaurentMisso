@@ -117,6 +117,23 @@ class Airline {
       if (connection) connection.close();
     }
   }
+
+  static async deleteAirline(id) {
+    const connection = await sql.connect(dbConfig);
+
+    
+    await connection.request()
+        .input("id", sql.Int, id)
+        .query("DELETE FROM BicycleSizeRestrictions WHERE AirlineID = @id");
+
+    
+    await connection.request()
+        .input("id", sql.Int, id)
+        .query("DELETE FROM Airlines WHERE AirlineID = @id");
+
+    connection.close();
+}
+  
 }
 
 module.exports = Airline;
