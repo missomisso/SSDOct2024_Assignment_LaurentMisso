@@ -1,9 +1,12 @@
+
+<!--Main page - Flight Search-->> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Search & Bicycle Policy Finder</title>
+    <title>Flight Search</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -12,6 +15,9 @@
     <!-- Navigation Bar -->
     <header>
         <h1>Travel Finder</h1>
+        <nav>
+            <a href="policy.html">Bicycle Policy Finder</a>
+        </nav>
     </header>
 
     <!-- Hero Section (Search Form) -->
@@ -41,18 +47,6 @@
         <div id="booking-result"></div>
     </section>
 
-    <hr>
-
-    <!-- Bicycle Policy Finder -->
-    <section class="policy-container">
-        <h2>Check Airline Bicycle Policy</h2>
-        <select id="airlineDropdown" onclick="loadAirlines()">
-            <option value="">Select an Airline</option>
-        </select>
-        <button onclick="fetchPolicy()">Find Policy</button>
-        <div id="result"></div>
-    </section>
-
-    <script src="script.js"></script>
+    <script src="duffel.js"></script>
 </body>
 </html>

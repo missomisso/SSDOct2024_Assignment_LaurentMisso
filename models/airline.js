@@ -10,7 +10,7 @@ class Airline {
     this.BicyclePolicy = BicyclePolicy;
   }
 
-  /** ✅ Fetch All Airlines */
+  
   static async getAllAirlines() {
     let connection;
     try {
@@ -25,7 +25,7 @@ class Airline {
     }
   }
 
-  /** ✅ Fetch Airline By ID */
+  
   static async getAirlineById(id) {
     let connection;
     try {
@@ -46,7 +46,7 @@ class Airline {
     }
   }
 
-  /** ✅ Create a New Airline */
+  
   static async createAirline(data) {
     let connection;
     try {
@@ -71,13 +71,13 @@ class Airline {
     }
   }
 
-  /** ✅ Fetch Bicycle Policy by Airline Name (Preserving LIKE Query) */
+ 
   static async getBicyclePolicyByAirlineName(airlineName) {
     let connection;
     try {
       connection = await sql.connect(dbConfig);
       const request = connection.request();
-      request.input('AirlineName', sql.NVarChar, `%${airlineName}%`); // ✅ Preserves LIKE '%airlineName%'
+      request.input('AirlineName', sql.NVarChar, `%${airlineName}%`); 
       
       const result = await request.query(`
         SELECT BicyclePolicy FROM Airlines 
@@ -96,7 +96,7 @@ class Airline {
     }
   }
 
-  /** ✅ Fetch Bicycle Policy by Airline ID */
+
   static async getBicyclePolicyByAirlineId(airlineId) {
     let connection;
     try {

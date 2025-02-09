@@ -1,19 +1,4 @@
-// ✅ Load Airlines for Dropdown
-function loadAirlines() {
-    fetch("/api/airlines")
-        .then(response => response.json())
-        .then(data => {
-            let dropdown = document.getElementById("airlineDropdown");
-            dropdown.innerHTML = '<option value="">Select an Airline</option>';
-            data.data.forEach(airline => {
-                let option = document.createElement("option");
-                option.value = airline.AirlineName.trim();
-                option.textContent = airline.AirlineName;
-                dropdown.appendChild(option);
-            });
-        })
-        .catch(error => console.error("Error loading airlines:", error));
-}
+// JS for Flight Search //
 
 // ✅ Search Flights
 function searchFlights() {
@@ -58,9 +43,4 @@ function displayOffers(offers) {
 // ✅ Book Flight
 function bookFlight() {
     alert("Flight booking feature will be available soon!");
-}
-
-// ✅ Fetch Airline Policy
-function fetchPolicy() {
-    alert("Fetching airline policy...");
 }

@@ -53,7 +53,7 @@ const createAirline = async (req, res) => {
   try {
     const { AirlineName, IATA_Code, ICAO_Code, BicyclePolicy } = req.body;
 
-    const newAirline = await Airline.createAirline({
+    const newAirline = await airline.createAirline({
       AirlineName,
       IATA_Code,
       ICAO_Code,
