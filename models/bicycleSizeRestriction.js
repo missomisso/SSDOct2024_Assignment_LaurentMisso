@@ -68,7 +68,4 @@ class BicycleSizeRestriction {
 }
 
 
-
-
-
 module.exports = BicycleSizeRestriction;
