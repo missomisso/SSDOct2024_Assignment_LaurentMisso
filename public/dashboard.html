@@ -8,10 +8,31 @@
 </head>
 <body>
 
-    <h2>Welcome to Your Dashboard</h2>
-    <p>This page is protected and only accessible when logged in.</p>
+    <!-- Include Header -->
+    <div id="header-placeholder"></div>
 
-    <button id="logout">Logout</button>
+    <!-- Dashboard Content -->
+    <section class="dashboard-container">
+        <h2>Welcome, <span id="user-name">User</span>!</h2>
+        <p>This is your personalized dashboard.</p>
+
+        <div class="dashboard-links">
+            <a href="index.html" class="btn">✈️ Book a Flight</a>
+            <a href="policy.html" class="btn">🚴‍♂️ Check Bicycle Policy</a>
+        </div>
+
+        <button id="logout" class="logout-btn">Logout</button>
+    </section>
+
+    <!-- Load Header -->
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(headerHtml => {
+                document.getElementById("header-placeholder").innerHTML = headerHtml;
+            })
+            .catch(error => console.error("Error loading header:", error));
+    </script>
 
     <script src="dashboard.js"></script>
 </body>

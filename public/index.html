@@ -1,29 +1,20 @@
-
-<!--Main page - Flight Search-->> 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Search</title>
+    <title>BikeYourFlight.com</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <header>
-        <h1>Travel Finder</h1>
-        <nav>
-            <a href="policy.html">Bicycle Policy Finder</a>
-        </nav>
-    </header>
+    <!-- Include Header -->
+    <div id="header-placeholder"></div>
 
-    <!-- Hero Section (Search Form) -->
+    <!-- Hero Section -->
     <section class="hero">
+        <h2>Find Your Flight</h2>
         <div class="search-container">
-            <h2>Find Your Flight</h2>
             <div class="search-box">
                 <input type="text" id="origin" placeholder="From (Airport)">
                 <input type="text" id="destination" placeholder="To (Airport)">
@@ -33,20 +24,17 @@
         </div>
     </section>
 
-    <!-- Flight Offers Section -->
-    <section id="offers-container" class="hidden">
-        <h2>Available Flights</h2>
-        <ul id="offers-list"></ul>
-    </section>
-
-    <!-- Booking Section -->
-    <section id="booking-container" class="hidden">
-        <h2>Confirm Booking</h2>
-        <p id="selected-offer"></p>
-        <button onclick="bookFlight()">Book Flight</button>
-        <div id="booking-result"></div>
-    </section>
-
-    <script src="duffel.js"></script>
+    <script>
+        // Load header dynamically
+        fetch("header.html")
+            .then((response) => response.text())
+            .then((headerHtml) => {
+                document.getElementById("header-placeholder").innerHTML = headerHtml;
+            })
+            .catch((error) => {
+                console.error("Error loading the header:", error);
+            });
+    </script>
+    <script src="flightsearch.js"></script>
 </body>
 </html>

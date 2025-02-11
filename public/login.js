@@ -19,7 +19,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         // ✅ Store JWT token in localStorage
         localStorage.setItem("authToken", data.token);
 
-        // ✅ Redirect to protected page
+        // ✅ Redirect to the dashboard
         window.location.href = "dashboard.html";
     } else {
         alert("Error: " + data.message);

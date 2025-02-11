@@ -1,5 +1,3 @@
-// JS for Flight Search //
-
 // ✅ Search Flights
 function searchFlights() {
     const origin = document.getElementById("origin").value;

@@ -1,5 +1,3 @@
-<!--Bicycle Policy Finder-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,29 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bicycle Policy Finder</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <header>
-        <h1>Airline Bicycle Policies</h1>
-        <nav>
-            <a href="index.html">Back to Flight Search</a>
-        </nav>
-    </header>
+    <!-- Include Header -->
+    <div id="header-placeholder"></div>
 
     <!-- Bicycle Policy Finder -->
     <section class="policy-container">
         <h2>Check Airline Bicycle Policy</h2>
         <select id="airlineDropdown" onclick="loadAirlines()">
-            <option value="" selected>Select an Airline</option>
+            <option value="">Select an Airline</option>
         </select>
         <button onclick="fetchPolicy(event)">Find Policy</button>
-
         <div id="result"></div>
     </section>
 
+    <script>
+        // Load header dynamically
+        fetch("header.html")
+            .then((response) => response.text())
+            .then((headerHtml) => {
+                document.getElementById("header-placeholder").innerHTML = headerHtml;
+            })
+            .catch((error) => {
+                console.error("Error loading the header:", error);
+            });
+    </script>
     <script src="policy.js"></script>
 </body>
 </html>
