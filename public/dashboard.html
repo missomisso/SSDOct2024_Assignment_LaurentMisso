@@ -3,37 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Login - BikeYourFlight</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <!-- Include Header -->
-    <div id="header-placeholder"></div>
-
-    <!-- Dashboard Content -->
+    <script src="dashboard.js"></script>
     <section class="dashboard-container">
-        <h2>Welcome, <span id="user-name">User</span>!</h2>
-        <p>This is your personalized dashboard.</p>
-
-        <div class="dashboard-links">
-            <a href="index.html" class="btn">✈️ Book a Flight</a>
-            <a href="policy.html" class="btn">🚴‍♂️ Check Bicycle Policy</a>
-        </div>
-
-        <button id="logout" class="logout-btn">Logout</button>
+        <h2>Manage Airlines & Bicycle Policies</h2>
+    
+        <!-- Form for Adding Airline and Bicycle Policy -->
+        <form id="airline-form">
+            <h3>Add a New Airline</h3>
+            <input type="text" id="airline-name" placeholder="Airline Name" required>
+            <input type="text" id="iata-code" placeholder="IATA Code" required>
+            <input type="text" id="icao-code" placeholder="ICAO Code" required>
+            <textarea id="bicycle-policy" placeholder="Bicycle Policy Description" required></textarea>
+        
+            <h3>Set Bicycle Size Restrictions</h3>
+            <input type="number" id="max-weight" placeholder="Max Weight (kg)" required>
+            <input type="number" id="max-length" placeholder="Max Length (cm)" required>
+            <input type="number" id="max-width" placeholder="Max Width (cm)" required>
+            <input type="number" id="max-height" placeholder="Max Height (cm)" required>
+        
+            <button type="submit">Add Airline & Policy</button>
+        </form>
+        
+        <p id="response-message"></p>
     </section>
-
-    <!-- Load Header -->
-    <script>
-        fetch("header.html")
-            .then(response => response.text())
-            .then(headerHtml => {
-                document.getElementById("header-placeholder").innerHTML = headerHtml;
-            })
-            .catch(error => console.error("Error loading header:", error));
-    </script>
-
     <script src="dashboard.js"></script>
 </body>
 </html>
+
