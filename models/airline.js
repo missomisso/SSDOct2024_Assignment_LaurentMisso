@@ -16,7 +16,7 @@ class Airline {
     try {
       connection = await sql.connect(dbConfig);
       const result = await connection.query("SELECT * FROM Airlines");
-      return result.recordset.map((row) => new Airline(row));
+      return result.recordset.map((row) => new Airline(row.AirlineID, row.AirlineName, row.IATA_Code, row.ICAO_Code, row.BicyclePolicy));
     } catch (error) {
       console.error("Error fetching airlines:", error);
       throw new Error("Database query failed");

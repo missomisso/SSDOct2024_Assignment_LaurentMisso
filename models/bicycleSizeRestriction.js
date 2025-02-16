@@ -18,7 +18,7 @@ class BicycleSizeRestriction {
       SELECT * FROM BicycleSizeRestrictions WHERE AirlineID = @airlineId
     `);
     connection.close();
-    return result.recordset.map((row) => new BicycleSizeRestriction(row));
+    return result.recordset.map((row) => new BicycleSizeRestriction(row.AirlineID, row.MaxWeight, row.MaxLength, row.MaxWidth, row.MaxHeight));
   }
 
   static async getByAirlineName(airlineName) {
@@ -31,7 +31,7 @@ class BicycleSizeRestriction {
       WHERE a.AirlineName = @airlineName
     `);
     connection.close();
-    return result.recordset.map((row) => new BicycleSizeRestriction(row));
+    return result.recordset.map((row) => new BicycleSizeRestriction(row.AirlineID, row.MaxWeight, row.MaxLength, row.MaxLength, row.MaxWidth, row.MaxHeight));
   }
 
   static async addRestrictions( AirlineID, MaxWeight, MaxLength, MaxWidth, MaxHeight ) {

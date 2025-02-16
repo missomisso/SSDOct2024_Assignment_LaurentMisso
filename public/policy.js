@@ -12,8 +12,8 @@ function loadAirlines() {
             data.data.forEach(airline => {
                 console.log("Airline", airline);
                 let option = document.createElement("option");
-                option.value = airline.AirlineID.AirlineName;
-                option.textContent = airline.AirlineID.AirlineName;
+                option.value = airline.AirlineName;
+                option.textContent = airline.AirlineName;
                 
                 if (option.value === selectedValue) {
                     option.selected = true;
