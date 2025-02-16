@@ -8,7 +8,7 @@ router.get("/", airlineController.getAllAirlines);
 router.get("/:id", airlineController.getAirlineDetails);
 router.get("/bicycle-policy/name/:name", airlineController.getBicyclePolicyByAirlineName);
 router.get("/bicycle-policy/id/:id", airlineController.getBicyclePolicyByAirlineId);
-router.post("/", createAirline); // POST /api/airlines
+router.post("/", airlineController.createAirline); // POST /api/airlines
 router.delete("/:id", airlineController.deleteAirline); // DELETE /api/airlines/:id
 
  

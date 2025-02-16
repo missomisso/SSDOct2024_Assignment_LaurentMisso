@@ -37,7 +37,7 @@ class Airline {
       if (result.recordset.length === 0) {
         throw new Error(`No airline found with ID ${id}`);
       }
-      return new Airline(result.recordset[0]);
+      return result.recordset[0];
     } catch (error) {
       console.error("Error fetching airline by ID:", error);
       throw error;

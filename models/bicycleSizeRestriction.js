@@ -35,6 +35,8 @@ class BicycleSizeRestriction {
   }
 
   static async addRestrictions( AirlineID, MaxWeight, MaxLength, MaxWidth, MaxHeight ) {
+    console.log("🚀 Executing SQL Query for AirlineID:", AirlineID);
+    
     const connection = await sql.connect(dbConfig);
     const request = connection.request();
     request.input("AirlineID", sql.Int, AirlineID);
@@ -42,10 +44,12 @@ class BicycleSizeRestriction {
     request.input("MaxLength", sql.Float, MaxLength);
     request.input("MaxWidth", sql.Float, MaxWidth);
     request.input("MaxHeight", sql.Float, MaxHeight);
-    await request.query(`
-      INSERT INTO BicycleSizeRestrictions (AirlineID, MaxWeight, MaxLength, MaxWidth, MaxHeight)
-      VALUES (@AirlineID, @MaxWeight, @MaxLength, @MaxWidth, @MaxHeight);
-    `);
+    const query = `
+    INSERT INTO BicycleSizeRestrictions (AirlineID, MaxWeight, MaxLength, MaxWidth, MaxHeight)
+    VALUES (@AirlineID, @MaxWeight, @MaxLength, @MaxWidth, @MaxHeight);`;
+    console.log("🚀 SQL Query:", query);
+
+    await request.query(query);
     connection.close();
   }
 

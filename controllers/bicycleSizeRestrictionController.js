@@ -3,14 +3,15 @@ const BicycleSizeRestriction = require("../models/bicycleSizeRestriction");
 const addRestrictions = async (req, res) => {
   try {
     const { AirlineID, MaxWeight, MaxLength, MaxWidth, MaxHeight } = req.body;
+    console.log("🚀 Adding restrictions for AirlineID:", AirlineID);
 
-    await BicycleSizeRestriction.addRestrictions({
+    await BicycleSizeRestriction.addRestrictions(
       AirlineID,
       MaxWeight,
       MaxLength,
       MaxWidth,
       MaxHeight,
-    });
+    );
 
     res.status(201).json({ success: true, message: "Restrictions added successfully." });
   } catch (error) {
