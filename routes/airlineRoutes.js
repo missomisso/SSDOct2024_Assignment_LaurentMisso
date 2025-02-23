@@ -10,6 +10,7 @@ router.get("/bicycle-policy/name/:name", airlineController.getBicyclePolicyByAir
 router.get("/bicycle-policy/id/:id", airlineController.getBicyclePolicyByAirlineId);
 router.post("/", airlineController.createAirline); // POST /api/airlines
 router.delete("/:id", airlineController.deleteAirline); // DELETE /api/airlines/:id
+router.put("/:id", airlineController.updateAirline); // PUT /api/airlines/:id
 
  
 

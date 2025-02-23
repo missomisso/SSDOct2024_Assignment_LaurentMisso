@@ -132,7 +132,31 @@ class Airline {
         .query("DELETE FROM Airlines WHERE AirlineID = @id");
 
     connection.close();
+  }
+
+  static async updateAirline(AirlineID, AirlineName, IATA_Code, ICAO_Code, BicyclePolicy) {
+    console.log("🔄 Executing Update Query for AirlineID:", AirlineID);
+
+    const connection = await sql.connect(dbConfig);
+    const request = connection.request();
+    request.input("AirlineID", sql.Int, AirlineID);
+    request.input("AirlineName", sql.VarChar, AirlineName);
+    request.input("IATA_Code", sql.VarChar, IATA_Code);
+    request.input("ICAO_Code", sql.VarChar, ICAO_Code);
+    request.input("BicyclePolicy", sql.Text, BicyclePolicy);
+
+    const result = await request.query(`
+        UPDATE Airlines
+        SET AirlineName = @AirlineName, IATA_Code = @IATA_Code, 
+            ICAO_Code = @ICAO_Code, BicyclePolicy = @BicyclePolicy
+        WHERE AirlineID = @AirlineID;
+    `);
+
+    connection.close();
+
+    return result.rowsAffected[0] > 0; // ✅ Returns `true` if update was successful
 }
+
   
 }
 

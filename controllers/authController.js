@@ -1,30 +1,37 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-// const secretKey = process.env.JWT_SECRET || "your-secret-key"; 
+const secretKey = process.env.JWT_SECRET || "your-secret-key"; 
 
 
-// ✅ Register User
+// Register User
 const register = async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        console.log("🚀 Received Registration Data:", req.body); // ✅ Log request data
 
-        // ✅ Check if user already exists
-        const existingUser = await user.getUserByEmail(email);
+        const { name, email, password } = req.body;
+
+        // Check if email already exists
+        const existingUser = await User.getUserByEmail(email);
         if (existingUser) {
-            return res.status(400).json({ success: false, message: "User already exists." });
+            return res.status(409).json({ success: false, message: "Email already registered!" });
         }
 
-        // ✅ Register new user
-        await User.registerUser(username, email, password);
-        res.status(201).json({ success: true, message: "User registered successfully!" });
+        // Hash Password
+        const bcrypt = require("bcryptjs");
+        const hashedPassword = await bcrypt.hash(password, 10);
 
+        // Create New User
+        const newUser = await User.registerUser(name, email, hashedPassword);
+
+        console.log("✅ User Registered:", newUser);
+        res.status(201).json({ success: true, message: "User registered successfully!" });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: "Error registering user." });
+        console.error("❌ Error in Registration:", error.message);
+        res.status(500).json({ success: false, message: "Internal Server Error." });
     }
 };
 
-// ✅ Login User
+// Login User
 const login = async (req, res) => {
     console.log("Login request received with method:", req.method);
     console.log("Request body:", req.body);

@@ -87,10 +87,30 @@ const deleteAirline = async (req, res) => {
   }
 };
 
+const updateAirline = async (req, res) => {
+  try {
+      console.log("🚀 Updating Airline with ID:", req.params.id);
+      console.log("🔄 Update Data:", req.body);
+
+      const { id } = req.params;
+      const { AirlineName, IATA_Code, ICAO_Code, BicyclePolicy } = req.body;
+
+      const updatedAirline = await airline.updateAirline(id, AirlineName, IATA_Code, ICAO_Code, BicyclePolicy);
+
+      if (!updatedAirline) {
+          return res.status(404).json({ success: false, message: "Airline not found!" });
+      }
+
+      res.status(200).json({ success: true, message: "Airline updated successfully!", data: updatedAirline });
+  } catch (error) {
+      console.error("❌ Error updating airline:", error.message);
+      res.status(500).json({ success: false, message: "Internal Server Error." });
+  }
+};
 
 
 module.exports = { getAllAirlines, getAirlineDetails, createAirline,  getBicyclePolicyByAirlineName,
-  getBicyclePolicyByAirlineId, deleteAirline
+  getBicyclePolicyByAirlineId, deleteAirline, updateAirline
 };
 
 
