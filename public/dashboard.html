@@ -6,26 +6,18 @@
     <title>Login - BikeYourFlight</title>
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
 </head>
 
 <body>
-  <nav class="bg-red-600 p-4 shadow-lg">
-    <div id="header-main" class="px-5 container mx-auto flex justify-between items-center text-white text-4xl text-bold">
-      BikeYourFlight.com
-    </div>
-    <br>
-    <div class="text-white text-sm px-10">
-      <a href="index.html" class="inline-block bg-red-600 border border-white hover:bg-red-800 text-white font-medium py-2 px-4 rounded-xl m-2">Home</a>
-      <a href="dashboard.html" class="inline-block bg-red-600 border border-white hover:bg-red-800 text-white font-medium py-2 px-4 rounded-xl m-2">Dashboard</a>
-      <a href="logout.html" class="inline-block bg-red-600 border border-white hover:bg-red-800 text-white font-medium py-2 px-4 rounded-xl m-2">Logout</a>
-    </div>
-  </nav>
+      <!-- Include Header -->
+    <div id="header-placeholder"></div>
 
-  <section class="dashboard-container">
-<!-- Container to center the form & limit max width -->
-<div class="w-full max-w-4xl mx-auto px-4">
-  <form id="airline-form" class="bg-white p-10 rounded-xl shadow-xl">
-    <h3 class="text-3xl font-bold text-center text-gray-800 mb-8">Add a New Airline</h3>
+ <section class="dashboard-container">
+ <!-- Container to center the form & limit max width -->
+    <div class="w-full max-w-4xl mx-auto px-4">
+     <form id="airline-form" class="bg-white p-10 rounded-xl shadow-xl">
+     <h3 class="text-3xl font-bold text-center text-gray-800 mb-8">Add a New Airline</h3>
 
     <!-- Airline Info -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -91,6 +83,19 @@
     </form>
     <p id="response-message"></p>
   </section>
+
+  <script>
+        // Load header dynamically
+        fetch("header.html")
+            .then((response) => response.text())
+            .then((headerHtml) => {
+                document.getElementById("header-placeholder").innerHTML = headerHtml;
+            })
+            .catch((error) => {
+                console.error("Error loading the header:", error);
+            });
+    </script>
+
   <script src="dashboard.js"></script>
 </body>
 </html>

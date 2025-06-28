@@ -19,7 +19,9 @@
   "homepage": "https://github.com/missomisso/SSDOct2024_Assignment_LaurentMisso#readme",
   "devDependencies": {
     "dotenv": "^16.4.7",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "prettier": "^3.6.1",
+    "prettier-plugin-tailwindcss": "^0.6.13"
   },
   "dependencies": {
     "@duffel/api": "^4.1.0",
